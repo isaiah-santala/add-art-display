@@ -8,6 +8,7 @@ class App extends Component {
       src: '',
       store: '',
       orientation: '',
+      color: ' is-danger',
       progress: 0
     }
   }
@@ -20,7 +21,9 @@ class App extends Component {
     if (src !== '') progress = progress + 34
     if (orientation !== '') progress = progress + 34
 
-    this.setState({ progress })
+    const color = progress === 102 ? ' is-primary' : ' is-danger'
+
+    this.setState({ progress, color })
   }
 
   handleChange({name, value}) {
@@ -42,12 +45,12 @@ class App extends Component {
   }
 
   render() {
-    const {src, store, progress} = this.state
+    const {src, store, progress, color} = this.state
     return (
       <div className="section">
         <div className="container">
-          <h1 className="title is-1">Upload An Image</h1>
-          <progress className={"progress" + (progress === 102 ? " is-primary" : " is-danger")} value={progress} max="100" />
+          <h1 className="title is-1">Upload Some New Art!!!</h1>
+          <progress className={"progress" + color} value={progress} max="100" />
           <br />
           <form 
             onSubmit={(e) => {
